@@ -1,4 +1,6 @@
 /*
+ * v0.2 2016 Jul. 05
+ *   - add calibration example
  * v0.1 2016 Jul. 03
  *   - remove Calibration()
  *   - use Interrupt
@@ -136,12 +138,16 @@ void meansensors(){
 
 void showData()
 {
-  accelgyro.setXAccelOffset(0);
-  accelgyro.setYAccelOffset(0);
-  accelgyro.setZAccelOffset(0);
-  accelgyro.setXGyroOffset(0);
-  accelgyro.setYGyroOffset(0);
-  accelgyro.setZGyroOffset(0);
+  Serial.println(accelgyro.getXAccelOffset());
+  Serial.println(accelgyro.getYAccelOffset());
+  Serial.println(accelgyro.getZAccelOffset());
+  
+//  accelgyro.setXAccelOffset(0);
+//  accelgyro.setYAccelOffset(0);
+//  accelgyro.setZAccelOffset(0);
+//  accelgyro.setXGyroOffset(0);
+//  accelgyro.setYGyroOffset(0);
+//  accelgyro.setZGyroOffset(0);
 
   for(int loop = 0; loop < 10; loop++) {
     meansensors();
@@ -162,12 +168,12 @@ void showData()
     Serial.println();
   }
 
-  accelgyro.setXAccelOffset(-81/8);
-  accelgyro.setYAccelOffset(-264/8);
-  accelgyro.setZAccelOffset((16384-16308)/8);
-  accelgyro.setXGyroOffset(0);
-  accelgyro.setYGyroOffset(0);
-  accelgyro.setZGyroOffset(0);
+  accelgyro.setXAccelOffset(-5170 - 8); // divide by 8, but should be even not odd number
+  accelgyro.setYAccelOffset(5390 - 38); // divide by 8, but should be even not odd number 
+  accelgyro.setZAccelOffset(8424 + 16); // divide by 8, but should be even not odd number
+  accelgyro.setXGyroOffset( 80 / 4); // divide by 4 
+  accelgyro.setYGyroOffset( 8 / 4); // divide by 4
+  accelgyro.setZGyroOffset( 286 / 4); // divide by 4
 
   for(int loop = 0; loop < 10; loop++) {
     meansensors();
